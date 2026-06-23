@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Velour Admin</title>
+
+</head>
+
+<body>
+
+<h1>Velour Admin</h1>
+
+<button onclick="logout()">
+
+Logout
+
+</button>
+
+<br><br>
+
+<input
+id="search"
+placeholder="Search by ID, name or email"
+>
+
+<button onclick="search()">
+
+Search
+
+</button>
+
+<button onclick="showToday()">
+
+Today
+
+</button>
+
+<button onclick="showPending()">
+
+Pending
+
+</button>
+
+<button onclick="load()">
+
+Reset
+
+</button>
+
+<br><br>
+
+<button onclick="exportExcel()">
+
+Export Excel
+
+</button>
+
+<br><br>
+
+<h3 id="total"></h3>
+
+<h3 id="today"></h3>
+
+<table border="1" id="table">
+
+</table>
+
+<script>
+
+const token = localStorage.getItem("token");
+
+if(!token){
+
+    window.location.href="/login.html";
+
+}
+
+function renderTable(data){
+
+let html=`
+
+<tr>
+
+<th>ID</th>
+
+<th>Villa</th>
+
+<th>Ime</th>
+
+<th>Prezime</th>
+
+<th>Email</th>
+
+<th>Telefon</th>
+
+<th>Datum</th>
+
+<th>Vreme</th>
+
+<th>Gosti</th>
+
+<th>Povod</th>
+
+<th>Napomena</th>
+
+<th>Status</th>
+
+<th>Akcija</th>
+
+</tr>
+
+`;
+
+data.forEach(r=>{
+
+html += `
+
+<tr>
+
+<td>${r.id}</td>
+
+<td>${r.villaName || ""}</td>
+
+<td>${r.firstName || ""}</td>
+
+<td>${r.lastName || ""}</td>
+
+<td>${r.email || ""}</td>
+
+<td>${r.phone || ""}</td>
+
+<td>${r.reservationDate || ""}</td>
+
+<td>${r.reservationTime || ""}</td>
+
+<td>${r.guests || ""}</td>
+
+<td>${r.occasion || ""}</td>
+
+<td>${r.notes || ""}</td>
+
+<td>
+
+${
+r.status==="Confirmed"
+
+? "✅ Confirmed"
+
+:
+
+r.status==="Rejected"
+
+? "❌ Rejected"
+
+:
+
+"⏳ Pending"
+
+}
+
+</td>
+
+<td>
+
+${r.status==="Pending" ? `
+<button onclick="confirmReservation(${r.id})">
+Confirm
+</button>
+<button onclick="rejectReservation(${r.id})">
+Reject
+</button>
+` : ''}
+
+<button onclick="removeReservation(${r.id})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("table").innerHTML=html;
+
+}
+
+async function load(){
+
+    const res = await fetch(
+
+        "/api/reservations",
+
+        {
+
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if(!Array.isArray(data)){
+
+        alert("Session expired");
+
+        localStorage.removeItem("token");
+
+        window.location.href="/login.html";
+
+        return;
+
+    }
+
+    renderTable(data);
+
+}
+
+async function removeReservation(id){
+
+    const confirmDelete = confirm(
+
+        "Delete reservation?"
+
+    );
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+    await fetch(
+
+        `/api/reservations/${id}`,
+
+        {
+
+            method:"DELETE",
+
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    load();
+
+}
+
+async function confirmReservation(id){
+
+    const res = await fetch(
+
+        `/api/reservations/${id}/confirm`,
+
+        {
+
+            method:"POST",
+
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await res.json();
+
+    console.log(data);
+
+    load();
+
+}
+
+
+
+
+async function rejectReservation(id){
+
+    const res = await fetch(
+
+        `/api/reservations/${id}/reject`,
+
+        {
+
+            method:"PUT",
+
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await res.json();
+
+    console.log("Reject response:", data);
+
+    load();
+
+}
+
+async function search(){
+
+    const q =
+
+    document
+
+    .getElementById("search")
+
+    .value;
+
+    const res = await fetch(
+
+        `/api/search?q=${q}`,
+
+        {
+
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await res.json();
+
+    console.log(data);
+
+    renderTable(data);
+
+}
+
+async function loadStats(){
+
+    const res = await fetch(
+
+        "/api/stats",
+
+        {
+
+            headers:{
+
+                Authorization:
+
+                `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    const data = await res.json();
+
+    document
+
+    .getElementById("total")
+
+    .innerText =
+
+    `Total reservations: ${data.total}`;
+
+    document
+
+    .getElementById("today")
+
+    .innerText =
+
+    `Today: ${data.today}`;
+
+}
+
+async function showToday(){
+
+const res=await fetch(
+
+"/api/reservations",
+
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${token}`
+
+}
+
+}
+
+);
+
+const data=await res.json();
+
+const today=
+
+new Date()
+
+.toISOString()
+
+.slice(0,10);
+
+renderTable(
+
+data.filter(
+
+r=>
+
+r.reservationDate===today
+
+)
+
+);
+
+}
+
+
+
+async function showPending(){
+
+const res=await fetch(
+
+"/api/reservations",
+
+{
+
+headers:{
+
+Authorization:
+
+`Bearer ${token}`
+
+}
+
+}
+
+);
+
+const data=await res.json();
+
+renderTable(
+
+data.filter(
+
+r=>
+
+r.status==="Pending"
+
+)
+
+);
+
+}
+
+function exportExcel(){
+
+let table = document.getElementById("table");
+
+let clone = table.cloneNode(true);
+
+for(let row of clone.rows){
+
+row.deleteCell(row.cells.length-1);
+
+}
+
+let html = clone.outerHTML;
+
+let url =
+
+'data:application/vnd.ms-excel,'
+
++
+
+encodeURIComponent(html);
+
+let a=document.createElement("a");
+
+a.href=url;
+
+a.download="reservations.xls";
+
+a.click();
+
+}
+
+function logout(){
+
+    localStorage.removeItem(
+
+        "token"
+
+    );
+
+    window.location.href=
+
+    "/login.html";
+
+}
+
+load();
+
+loadStats();
+
+</script>
+
+</body>
+
+</html>

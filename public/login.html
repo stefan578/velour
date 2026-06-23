@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Velour Admin Login</title>
+
+</head>
+
+<body>
+
+    <h1>Velour Admin Login</h1>
+
+    <input
+        id="username"
+        type="text"
+        placeholder="Username"
+    >
+
+    <br><br>
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Password"
+    >
+
+    <br><br>
+
+    <button onclick="login()">
+
+        Login
+
+    </button>
+
+    <p id="msg"></p>
+
+    <script>
+
+        async function login() {
+
+            const username =
+                document.getElementById("username").value;
+
+            const password =
+                document.getElementById("password").value;
+
+            const res = await fetch(
+                "/api/login",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                        "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        username,
+
+                        password
+
+                    })
+
+                }
+            );
+
+            const data = await res.json();
+
+            console.log(data);
+
+            if(data.success){
+
+                localStorage.setItem(
+                    "token",
+                    data.token
+                );
+
+                window.location.href =
+                    "/admin.html";
+
+            }
+
+            else{
+
+                document.getElementById(
+                    "msg"
+                ).innerText =
+                    "Pogresan username ili password";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

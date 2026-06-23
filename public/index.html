@@ -1,0 +1,1159 @@
+  <!DOCTYPE html>
+  <html lang="sr">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velour — Fina Trpeza & Vila</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#C9A96E;--gold-light:#E8D5A3;
+    --dark:#0F0E0C;--dark2:#1A1916;--dark3:#242320;
+    --cream:#F5F0E8;--text-muted:#9A9080;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--dark);color:var(--cream);font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(15,14,12,.96);backdrop-filter:blur(6px)}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:.25em;color:var(--gold)}
+  .nav-links{display:flex;gap:1.5rem;list-style:none}
+  .nav-links a{text-decoration:none;color:var(--cream);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7;transition:opacity .3s}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dark);background:var(--gold);padding:.55rem 1.2rem;text-decoration:none;transition:background .3s;white-space:nowrap}
+  .nav-cta:hover{background:var(--gold-light)}
+
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;text-align:center;background:var(--dark);padding:6rem 1.5rem 4rem}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(201,169,110,.08) 0%,transparent 70%)}
+  .hero-ornament{font-family:'Cormorant Garamond',serif;font-size:.7rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;opacity:.6;margin-bottom:1.5rem}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,12vw,8rem);font-weight:300;line-height:.9;letter-spacing:.04em;color:var(--cream);margin-bottom:1.2rem}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2.5rem}
+  .hero-divider{width:1px;height:2.5rem;background:var(--gold);margin:0 auto 1.8rem;opacity:.4}
+  .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{display:inline-block;padding:.85rem 2.2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s;cursor:pointer;background:transparent}
+  .btn-primary:hover{background:var(--gold);color:var(--dark)}
+  .btn-secondary{display:inline-block;padding:.85rem 2.2rem;border:1px solid rgba(201,169,110,.35);color:var(--cream);text-decoration:none;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s;cursor:pointer;background:transparent}
+  .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+  .hero-scroll{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
+
+  section{padding:5rem 1.5rem}
+  .section-tag{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:300;color:var(--cream);margin-bottom:.8rem}
+  .section-title em{font-style:italic;color:var(--gold)}
+  .section-line{width:50px;height:1px;background:var(--gold);margin:1.8rem auto;opacity:.4}
+
+  .about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .about-tag{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+  .about h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.1;margin-bottom:1.5rem;color:var(--cream)}
+  .about h2 em{font-style:italic;color:var(--gold)}
+  .about p{color:var(--text-muted);font-size:.88rem;line-height:1.9;margin-bottom:1.2rem}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid rgba(201,169,110,.15)}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold);display:block}
+  .stat-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted)}
+  .about-visual{position:relative}
+  .about-img-frame{width:100%;aspect-ratio:3/4;background:var(--dark2);border:1px solid rgba(201,169,110,.15);display:flex;align-items:center;justify-content:center}
+  .about-img-inner{width:85%;height:85%;background:var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+  .about-plate{font-size:4rem;opacity:.3}
+  .about-accent{position:absolute;top:-1.2rem;right:-1.2rem;width:100px;height:100px;border:1px solid rgba(201,169,110,.2)}
+
+  .menu-section{background:var(--dark2);text-align:center}
+  .menu-tabs{display:flex;justify-content:center;gap:0;margin:2.5rem 0 2rem;border-bottom:1px solid rgba(201,169,110,.15);flex-wrap:wrap}
+  .menu-tab{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;padding:.85rem 1.4rem;border-bottom:2px solid transparent;transition:all .3s;background:none;border-left:none;border-right:none;border-top:none;color:var(--text-muted)}
+  .menu-tab:hover,.menu-tab.active{color:var(--gold);border-bottom:2px solid var(--gold)}
+  .menu-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;max-width:1100px;margin:0 auto}
+  .menu-card{background:var(--dark3);border:1px solid rgba(201,169,110,.12);padding:1.8rem 1.6rem;text-align:left;transition:all .35s;position:relative;overflow:hidden;cursor:default;padding: 1.8rem 1.6rem;overflow:hidden;border-radius: 0}
+  .menu-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,169,110,.06) 0%,transparent 60%);opacity:0;transition:opacity .35s}
+  .menu-card:hover{border-color:rgba(201,169,110,.45);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+  .menu-card:hover::before{opacity:1}
+  .menu-card-image{width: calc(100% + 3.2rem);height: 200px;object-fit: cover;display: block;margin: -1.8rem -1.6rem 1.2rem -1.6rem;border-radius: 0;}
+  .menu-card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;margin-bottom:.6rem}
+  .menu-card-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--cream);line-height:1.2}
+  .menu-card-price{font-size:.75rem;color:var(--gold);letter-spacing:.04em;white-space:nowrap;padding:.25rem .6rem;border:1px solid rgba(201,169,110,.3);margin-top:.1rem;flex-shrink:0}
+  .menu-card-desc{font-size:.78rem;color:var(--text-muted);line-height:1.65}
+  .menu-card-tag{display:inline-block;margin-top:.9rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.5)}
+  .menu-pane{display:none}
+  .menu-pane.active{display:block}
+
+  .vila-section{background:var(--dark);text-align:center}
+  .vila-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;max-width:1800px;margin:2rem auto 0}
+  .vila-card{background:var(--dark2);border:1px solid rgba(201,169,110,.13);overflow:hidden;transition:all .35s;position:relative}
+  .vila-card:hover{border-color:rgba(201,169,110,.4);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.5)}
+  .vila-card-visual{width: 600px;%;height:600px;overflow:hidden;position:relative;background:var(--dark3);}
+  .vila-card-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--dark2));opacity:.7}
+  .vila-icon{font-size:3.5rem;opacity:.3;z-index:1}
+  .vila-badge{position:absolute;top:1rem;right:1rem;background:rgba(201,169,110,.15);border:1px solid rgba(201,169,110,.3);color:var(--gold);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .7rem;z-index:2}
+  .vila-card-body{padding:1.6rem}
+  .vila-card-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--cream);margin-bottom:.5rem}
+  .vila-card-desc{font-size:.8rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.2rem}
+  .vila-card-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem}
+  .vila-feature{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);border:1px solid rgba(201,169,110,.15);padding:.25rem .6rem}
+  .vila-card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:1.2rem;border-top:1px solid rgba(201,169,110,.1)}
+  .vila-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--gold)}
+  .vila-price span{font-family:'Inter',sans-serif;font-size:.65rem;color:var(--text-muted);letter-spacing:.08em;display:block;margin-top:.1rem}
+  .vila-btn{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,169,110,.35);padding:.55rem 1.1rem;cursor:pointer;background:transparent;font-family:'Inter',sans-serif;transition:all .3s;text-decoration:none;display:inline-block}
+  .vila-btn:hover{background:var(--gold);color:var(--dark)}
+  .vila-note{font-size:.75rem;color:var(--text-muted);margin-top:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8}
+
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,14,12,.96);z-index:300;align-items:center;justify-content:center;padding:1.5rem}
+  .modal-overlay.show{display:flex}
+  .modal-box{background:var(--dark2);border:1px solid rgba(201,169,110,.2);max-width:560px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto}
+  .modal-close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;line-height:1;transition:color .3s}
+  .modal-close:hover{color:var(--gold)}
+  .modal-tag{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+  .modal-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--cream);margin-bottom:.4rem}
+  .modal-sub{font-size:.78rem;color:var(--text-muted);margin-bottom:1.8rem;line-height:1.6}
+  .modal-form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
+  .modal-form-group label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.85}
+  .modal-form-group input,.modal-form-group select,.modal-form-group textarea{background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.22);padding:.65rem 0;color:var(--cream);font-family:'Inter',sans-serif;font-size:.88rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none;width:100%}
+  .modal-form-group select{background:var(--dark2);cursor:pointer}
+  .modal-form-group select option{background:var(--dark3)}
+  .modal-form-group input:focus,.modal-form-group select:focus,.modal-form-group textarea:focus{border-bottom-color:var(--gold)}
+  .modal-form-group textarea{resize:none;height:70px}
+  .modal-form-group input::placeholder,.modal-form-group textarea::placeholder{color:var(--text-muted);opacity:.4}
+  .modal-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .modal-submit{width:100%;margin-top:1.5rem;padding:.95rem;border:1px solid var(--gold);color:var(--gold);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;background:transparent;cursor:pointer;transition:all .4s;font-family:'Inter',sans-serif}
+  .modal-submit:hover:not(:disabled){background:var(--gold);color:var(--dark)}
+  .modal-submit:disabled{opacity:.35;cursor:not-allowed}
+  .modal-err{font-size:.65rem;color:#E24B4A;margin-top:.2rem;display:none}
+
+  .reserve-section{background:var(--dark2);text-align:center}
+  .form-wrapper{max-width:640px;margin:2.5rem auto 0;text-align:left}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem}
+  .form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:0}
+  .form-group label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.85}
+  .form-group input,.form-group select,.form-group textarea{background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.25);padding:.7rem 0;color:var(--cream);font-family:'Inter',sans-serif;font-size:.9rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none;width:100%}
+  .form-group select{background:var(--dark2);cursor:pointer}
+  .form-group select option{background:var(--dark3)}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-bottom-color:var(--gold)}
+  .form-group textarea{resize:none;height:75px}
+  .form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-muted);opacity:.45}
+  .form-group-full{margin-bottom:1.2rem}
+  .time-slot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:.5rem}
+  .time-slot{padding:.55rem .3rem;border:1px solid rgba(201,169,110,.2);font-size:.72rem;letter-spacing:.08em;text-align:center;cursor:pointer;transition:all .22s;color:var(--cream);background:transparent;font-family:'Inter',sans-serif;line-height:1.3}
+  .time-slot:hover:not(.booked):not(.selected){border-color:var(--gold);color:var(--gold)}
+  .time-slot.selected{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+  .time-slot.booked{border-color:rgba(255,255,255,.07);color:rgba(255,255,255,.18);cursor:not-allowed;background:rgba(255,255,255,.02)}
+  .time-slot.booked::after{content:'Zauzeto';display:block;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(226,75,74,.45);margin-top:.1rem}
+  .slot-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.8rem;font-size:.6rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
+  .legend-dot{width:9px;height:9px;border:1px solid;display:inline-block;margin-right:.35rem;vertical-align:middle}
+  .legend-dot.available{border-color:rgba(201,169,110,.3)}
+  .legend-dot.sel{background:var(--gold);border-color:var(--gold)}
+  .legend-dot.bkd{border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+  .no-date-msg{font-size:.78rem;color:var(--text-muted);font-style:italic;padding:.4rem 0}
+  .err-time-slot{font-size:.68rem;color:#E24B4A;margin-top:.3rem;letter-spacing:.04em;display:none}
+  .date-hint{font-size:.72rem;color:var(--gold);margin-top:.45rem;letter-spacing:.04em;opacity:.85;min-height:1.1rem}
+  .error-msg{font-size:.68rem;color:#E24B4A;margin-top:.25rem;letter-spacing:.04em;display:none}
+  .form-submit{width:100%;margin-top:2rem;padding:1rem;border:1px solid var(--gold);color:var(--gold);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;background:transparent;cursor:pointer;transition:all .4s;font-family:'Inter',sans-serif}
+  .form-submit:hover:not(:disabled){background:var(--gold);color:var(--dark)}
+  .form-submit:disabled{opacity:.35;cursor:not-allowed}
+  .form-note{text-align:center;font-size:.72rem;color:var(--text-muted);margin-top:1.2rem;letter-spacing:.04em}
+
+  .success-overlay{display:none;position:fixed;inset:0;background:rgba(15,14,12,.97);z-index:200;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem}
+  .success-overlay.show{display:flex}
+  .success-icon{font-size:1.4rem;color:var(--gold);border:1px solid rgba(201,169,110,.3);width:72px;height:72px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.8rem}
+  .success-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,2.5rem);font-weight:300;color:var(--cream);margin-bottom:.8rem}
+  .success-sub{color:var(--text-muted);font-size:.85rem;max-width:400px;margin:0 auto 2rem;line-height:1.8}
+  .success-close{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(201,169,110,.3);padding:.7rem 1.8rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all .3s}
+  .success-close:hover{background:var(--gold);color:var(--dark)}
+
+  footer{background:var(--dark3);padding:3.5rem 1.5rem;text-align:center;border-top:1px solid rgba(201,169,110,.1)}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);letter-spacing:.28em;margin-bottom:.7rem}
+  .footer-tagline{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem}
+  .footer-line{width:1px;height:36px;background:rgba(201,169,110,.2);margin:0 auto 1.5rem}
+  .footer-info{font-size:.78rem;color:var(--text-muted);line-height:2;letter-spacing:.04em}
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.2rem}
+    .nav-links{display:none}
+    .nav-logo{font-size:1.3rem}
+    section{padding:4rem 1.2rem}
+    .about-inner{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+    .about-stats{grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center}
+    .about-visual{max-width:280px;margin:0 auto}
+    .about-accent{display:none}
+    .menu-cards-grid{grid-template-columns:1fr}
+    .vila-grid{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr;gap:0}
+    .form-row .form-group{margin-bottom:1.2rem}
+    .time-slot-grid{gap:.45rem}
+    .time-slot{font-size:.65rem;padding:.5rem .2rem}
+    .modal-form-row{grid-template-columns:1fr}
+    .hero-btns{flex-direction:column;align-items:center}
+  }
+  @media(max-width:480px){
+    .hero h1{font-size:clamp(2.8rem,14vw,4.5rem)}
+    .nav-cta{padding:.5rem .9rem;font-size:.6rem}
+    .stat-num{font-size:1.8rem}
+    .menu-cards-grid{grid-template-columns:1fr}
+  }
+  @media(min-width:769px) and (max-width:1024px){
+    nav{padding:1.2rem 2.5rem}
+    section{padding:5rem 3rem}
+    .about-inner{gap:3rem}
+    .menu-cards-grid{grid-template-columns:repeat(2,1fr)}
+    .vila-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(min-width:1025px){
+    nav{padding:1.4rem 4rem}
+    section{padding:6rem 4rem}
+    .menu-cards-grid{grid-template-columns:repeat(4,1fr)}
+    .vila-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  </style>
+  </head>
+  <body>
+
+  <nav>
+    <div class="nav-logo">Velour</div>
+    <ul class="nav-links">
+      <li><a href="#about">Naša Priča</a></li>
+      <li><a href="#menu">Meni</a></li>
+      <li><a href="#vila">Vila</a></li>
+      <li><a href="#reserve">Rezervacija</a></li>
+    </ul>
+    <a href="#reserve" class="nav-cta">Rezervišite Sto</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div style="position:relative;z-index:1">
+      <p class="hero-ornament">Osnovan 2024 — Fina Trpeza & Vila</p>
+      <h1>Gde <em>ukus</em><br>postaje<br>uspomena</h1>
+      <p class="hero-sub">Intimno iskustvo savremene evropske kuhinje · Ekskluzivni smeštaj</p>
+      <div class="hero-divider"></div>
+      <div class="hero-btns">
+        <a href="#reserve" class="btn-primary">Rezervišite Večeru</a>
+        <a href="#vila" class="btn-secondary">Iznajmite Vilu</a>
+      </div>
+    </div>
+    <p class="hero-scroll">↓ Skroluj</p>
+  </section>
+
+  <section id="about" style="background:var(--dark)">
+    <div class="about-inner">
+      <div class="about">
+        <p class="about-tag">Naša Filozofija</p>
+        <h2>Pripremljeno s <em>pažnjom</em>,<br>posluženo s elegancijom</h2>
+        <p>Velour je nastao iz jednog dubokog uverenja: da sjajan obrok nije samo hrana, već naracija. Svaki tanjir priča priču o svom poreklu — farme u zoru, pijaca u podne, kuhinja u sumrak.</p>
+        <p>Naš chef sastavlja sezonski degustacioni meni koji se menja zajedno s prirodom, poštujući namirnice u trenutku njihovog vrhunca i uzdižući ih kroz klasičnu tehniku i modernu senzibilnost.</p>
+        <div class="about-stats">
+          <div><span class="stat-num">12</span><span class="stat-label">Mesta jedino</span></div>
+          <div><span class="stat-num">7</span><span class="stat-label">Degustacionih jela</span></div>
+          <div><span class="stat-num">100%</span><span class="stat-label">Sezonski meni</span></div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-img-frame">
+          <div class="about-img-inner">
+            <div class="about-plate">🍽</div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;color:rgba(201,169,110,.4);letter-spacing:.15em;text-align:center">VELOUR<br><span style="font-size:.65rem;letter-spacing:.28em">FINA TRPEZA</span></p>
+          </div>
+        </div>
+        <div class="about-accent"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="menu-section">
+    <p class="section-tag" style="text-align:center">Pažljivo Odabrano</p>
+    <h2 class="section-title" style="text-align:center">Naš <em>Meni</em></h2>
+    <p style="color:var(--text-muted);font-size:.83rem;max-width:400px;margin:0 auto;text-align:center">Naš meni se menja sa sezonama. Svako jelo je pažljivo osmišljeno i prilagođeno trenutku.</p>
+    <div class="section-line"></div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="switchTab('starters')">Predjela</button>
+      <button class="menu-tab" onclick="switchTab('mains')">Glavna Jela</button>
+      <button class="menu-tab" onclick="switchTab('desserts')">Deserti</button>
+      <button class="menu-tab" onclick="switchTab('wine')">Vinska Pratnja</button>
+    </div>
+
+  <div id="starters" class="menu-pane active">
+    <div class="menu-cards-grid">
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/W11r5Rwy/hq720-removebg-preview.png" alt="Biskvit od Langustina" style="width: calc(105% + 3.2rem);">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Biskvit od Langustina</span>
+          <span class="menu-card-price">1.800 RSD</span>
+        </div>
+        <p class="menu-card-desc">Langustini iz hladnih voda, šafran krem, mikro červil, brijoš kreker</p>
+        <span class="menu-card-tag">Preporučeno</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/Gmb0NK45/Terin-od-Foie-Grasa-removebg-preview.png" alt="Terin od Foie Grasa" style="width: calc(93% + 3.2rem);">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Terin od Foie Grasa</span>
+          <span class="menu-card-price">2.200 RSD</span>
+        </div>
+        <p class="menu-card-desc">Pačja džigerica, soten žele, tost brijoš, kompot od smokve</p>
+        <span class="menu-card-tag">Klasik</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/13yd3zcw/Chat-GPT-Image-Jun-20-2026-12-48-33-AM-removebg-preview.png" alt="Burata sa Paradajzom">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Burata sa Paradajzom</span>
+          <span class="menu-card-price">1.600 RSD</span>
+        </div>
+        <p class="menu-card-desc">Sveža burata, sporo pečen paradajz, stari balzamiko, ulje bosiljka</p>
+        <span class="menu-card-tag">Vegetarijansko</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/1tgm7B8B/Tuna-1-scaled-removebg-preview.png" alt="Tuna Krudo">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Tuna Krudo</span>
+          <span class="menu-card-price">1.900 RSD</span>
+        </div>
+        <p class="menu-card-desc">Plavoperajna tuna, yuzu dresing, krastavac, susam, kavijal</p>
+        <span class="menu-card-tag">Sezonsko</span>
+      </div>
+
+    </div>
+  </div>
+    </div>
+  <div id="mains" class="menu-pane">
+    <div class="menu-cards-grid">
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/TwkdCS2h/Vagju-File-removebg-preview.png" alt="Vagju File">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Vagju File</span>
+          <span class="menu-card-price">6.800 RSD</span>
+        </div>
+        <p class="menu-card-desc">A5 Vagju, sos od tartufa, pire krompir, sezonsko povrće</p>
+        <span class="menu-card-tag">Vrhunac menija</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/HWBz9tQb/beurre-noisette-removebg-preview.png" alt="Beurre Noisette">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Beurre Noisette</span>
+          <span class="menu-card-price">5.400 RSD</span>
+        </div>
+        <p class="menu-card-desc">Cela Dovre ploča, smeđi maslac, kapari, limun, boranija</p>
+        <span class="menu-card-tag">Specijalitet dana</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/tTm1Y7xB/Patka-na-Narandzi-removebg-preview.png" alt="Patka na Narandži">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Patka na Narandži</span>
+          <span class="menu-card-price">4.600 RSD</span>
+        </div>
+        <p class="menu-card-desc">Konfitovano pačje batake, gastrik od narandže, pečeno korenje, jus</p>
+        <span class="menu-card-tag">Klasik</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/W1Pn7p9r/Rizoto-sa-Pecurkama-removebg-preview.png" alt="Rizoto sa Pečurkama">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Rizoto sa Pečurkama</span>
+          <span class="menu-card-price">3.400 RSD</span>
+        </div>
+        <p class="menu-card-desc">Arborio pirinač, vrganji, crni tartuf, stari Parmezan, ulje tartufa</p>
+        <span class="menu-card-tag">Vegetarijansko</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="desserts" class="menu-pane">
+    <div class="menu-cards-grid">
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/hjhbGXjh/Cokoladni-Sufle-removebg-preview.png" alt="Čokoladni Sufle">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Čokoladni Sufle</span>
+          <span class="menu-card-price">1.600 RSD</span>
+        </div>
+        <p class="menu-card-desc">Tamna čokolada Valrona, krem od vanilje — potrebno 20 minuta</p>
+        <span class="menu-card-tag">Preporučeno</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/bJKbNLW9/Krem-Brile-removebg-preview.png" alt="Krem Brile">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Krem Brile</span>
+          <span class="menu-card-price">1.200 RSD</span>
+        </div>
+        <p class="menu-card-desc">Klasična tahićanska vanila, karamelizovana korica, sezonsko voće</p>
+        <span class="menu-card-tag">Klasik</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/K8vKbd4Y/Selekcija-Sireva-removebg-preview.png" alt="Selekcija Sireva">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Selekcija Sireva</span>
+          <span class="menu-card-price">1.800 RSD</span>
+        </div>
+        <p class="menu-card-desc">Tri pažljivo odabrana sira, med, dunja, prepečeni orasi</p>
+        <span class="menu-card-tag">Za dvoje</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/xjvqz0bs/Tart-Taten-removebg-preview.png" alt="Tart Taten">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Tart Taten</span>
+          <span class="menu-card-price">1.400 RSD</span>
+        </div>
+        <p class="menu-card-desc">Karamelizovana jabuka, lisnato testo, šantiji od Kalvadosa</p>
+        <span class="menu-card-tag">Sezonsko</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="wine" class="menu-pane">
+    <div class="menu-cards-grid">
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/cC0xmnnJ/Somelijerova-Pratnja-removebg-preview.png" alt="Somelijerova Pratnja">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Somelijerova Pratnja</span>
+          <span class="menu-card-price">6.500 RSD</span>
+        </div>
+        <p class="menu-card-desc">5 čaša pažljivo odabranih vina uz vaš degustacioni meni</p>
+        <span class="menu-card-tag">Popularno</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/5tzfW351/Grand-cru-selekcija-removebg-preview.png" alt="Premium Izbor">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Premium Izbor</span>
+          <span class="menu-card-price">11.000 RSD</span>
+        </div>
+        <p class="menu-card-desc">Grand cru selekcija, retka vina, dobrodošlica šampanjcem</p>
+        <span class="menu-card-tag">Luksuz</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/x81r8ym2/Wassmann-Kekfrankos-removebg-preview.png" alt="Prirodna Vina">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Prirodna Vina</span>
+          <span class="menu-card-price">7.000 RSD</span>
+        </div>
+        <p class="menu-card-desc">Biodinamička i prirodna vina malih evropskih proizvođača</p>
+        <span class="menu-card-tag">Organski</span>
+      </div>
+
+      <div class="menu-card">
+        <img class="menu-card-image" src="https://i.postimg.cc/V64TxrVp/bezalk-removebg-preview.png" alt="Bezalkoholna Pratnja">
+        <div class="menu-card-header">
+          <span class="menu-card-name">Bezalkoholna Pratnja</span>
+          <span class="menu-card-price">4.000 RSD</span>
+        </div>
+        <p class="menu-card-desc">Kućni napici: fermentisani sokovi, botanički infuzi, sirupi</p>
+        <span class="menu-card-tag">Bez alkohola</span>
+      </div>
+
+    </div>
+  </div>
+  </section>
+
+  <section id="vila" class="vila-section">
+  <p class="section-tag" style="text-align:center">Ekskluzivni Smeštaj</p>
+  <h2 class="section-title" style="text-align:center">Naše <em>Vile</em></h2>
+  <div class="section-line"></div>
+  <div class="vila-grid">
+
+    <!-- Vila 1 -->
+    <div class="vila-card">
+      <div class="vila-card-visual">
+        <img class="vila-card-image" src="https://i.postimg.cc/kMvKdNw6/Vila-Zlatnik-640x640.jpg" alt="Vila Zlatnik">
+        <span class="vila-badge">Dostupno</span>
+      </div>
+
+      <div class="vila-card-body">
+        <div class="vila-card-name">Vila Zlatnik</div>
+        <p class="vila-card-desc">
+          Intimna vila okružena šumom, sa pogledom na reku. Savršena za parove koji traže tišinu i udobnost.
+          Privatni bazen, kamena terasa i kamin.
+        </p>
+
+        <div class="vila-card-features">
+          <span class="vila-feature">2 spavaće sobe</span>
+          <span class="vila-feature">Do 4 osobe</span>
+          <span class="vila-feature">Privatni bazen</span>
+          <span class="vila-feature">Kamin</span>
+          <span class="vila-feature">Terasa</span>
+        </div>
+
+        <div class="vila-card-footer">
+          <div class="vila-price">250€<span>po noći</span></div>
+          <button class="vila-btn" onclick="openVilaModal('Vila Zlatnik')">
+            Upit za Rezervaciju
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vila 2 -->
+    <div class="vila-card">
+      <div class="vila-card-visual">
+        <img class="vila-card-image" src="https://i.postimg.cc/ncV7VsPf/Vila-Velour-Grande-640x640.jpg" alt="Vila Velour Grande">
+        <span class="vila-badge" style="background:rgba(201,169,110,.25);border-color:var(--gold);">
+          Najpopularnije
+        </span>
+      </div>
+
+      <div class="vila-card-body">
+        <div class="vila-card-name">Vila Velour Grande</div>
+        <p class="vila-card-desc">
+          Prostrana vila sa 4 spavaće sobe, opremljenom kuhinjom i direktnim pristupom restoranu.
+          Idealna za porodice i proslave.
+        </p>
+
+        <div class="vila-card-features">
+          <span class="vila-feature">4 spavaće sobe</span>
+          <span class="vila-feature">Do 10 osoba</span>
+          <span class="vila-feature">Privatni bazen</span>
+          <span class="vila-feature">Kuhinja</span>
+          <span class="vila-feature">BBQ terasa</span>
+          <span class="vila-feature">Sala za igru</span>
+        </div>
+
+        <div class="vila-card-footer">
+          <div class="vila-price">480€<span>po noći</span></div>
+          <button class="vila-btn" onclick="openVilaModal('Vila Velour Grande')">
+            Upit za Rezervaciju
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vila 3 -->
+    <div class="vila-card">
+      <div class="vila-card-visual">
+        <img class="vila-card-image" src="https://i.postimg.cc/GtCFxqKr/Sumska-Kuca.jpg" alt="Šumska Kuća">
+        <span class="vila-badge">Dostupno</span>
+      </div>
+
+      <div class="vila-card-body">
+        <div class="vila-card-name">Šumska Kuća</div>
+        <p class="vila-card-desc">
+          Moderan dizajn u zagrljaju prirode. Panoramski prozori, jacuzzi pod zvezdama
+          i potpuna privatnost.
+        </p>
+
+        <div class="vila-card-features">
+          <span class="vila-feature">1 spavaća soba</span>
+          <span class="vila-feature">Do 2 osobe</span>
+          <span class="vila-feature">Jacuzzi</span>
+          <span class="vila-feature">Panoramski pogled</span>
+          <span class="vila-feature">Doručak uključen</span>
+        </div>
+
+        <div class="vila-card-footer">
+          <div class="vila-price">180€<span>po noći</span></div>
+          <button class="vila-btn" onclick="openVilaModal('Šumska Kuća')">
+            Upit za Rezervaciju
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <p class="vila-note">Minimalni boravak: 2 noći. Cene su okvirne i mogu varirati u zavisnosti od sezone i broja gostiju. Kontaktirajte nas za individualne ponude i posebne zahteve.</p>
+  </section>
+
+  <!-- RESERVATION -->
+  <section id="reserve" class="reserve-section">
+    <p class="section-tag">Rezervišite Vaš Sto</p>
+    <h2 class="section-title">Večer <em>Čeka</em></h2>
+    <p style="color:var(--text-muted);font-size:.83rem;max-width:460px;margin:0 auto">Otvoreni smo od srede do nedelje, od 18:30 do 22:00. Rezervacije potvrđujemo u roku od 2 sata.</p>
+    <div class="section-line"></div>
+
+    <div class="form-wrapper">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ime</label>
+          <input type="text" id="firstName" placeholder="Marko" autocomplete="given-name">
+          <span class="error-msg" id="err-firstName">Molimo unesite vaše ime</span>
+        </div>
+        <div class="form-group">
+          <label>Prezime</label>
+          <input type="text" id="lastName" placeholder="Petrović" autocomplete="family-name">
+          <span class="error-msg" id="err-lastName">Molimo unesite vaše prezime</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email Adresa</label>
+          <input type="email" id="email" placeholder="marko@primer.com" autocomplete="email" inputmode="email">
+          <span class="error-msg" id="err-email">Molimo unesite ispravnu email adresu</span>
+        </div>
+        <div class="form-group">
+          <label>Broj Telefona</label>
+          <input type="tel" id="phone" placeholder="+381 60 123 4567" autocomplete="tel" inputmode="tel">
+          <span class="error-msg" id="err-phone">Molimo unesite vaš broj telefona</span>
+        </div>
+      </div>
+      <div class="form-group form-group-full">
+        <label>Datum (DD.MM.GGGG)</label>
+        <input type="text" id="date" placeholder="27.06.2026" maxlength="10" autocomplete="off" inputmode="numeric">
+        <p class="date-hint" id="dateHint"></p>
+        <span class="error-msg" id="err-date"></span>
+      </div>
+      <div class="form-group form-group-full">
+        <label>Odaberite Vreme</label>
+        <div id="slotContainer"><p class="no-date-msg">Najpre unesite datum da biste videli slobodne termine</p></div>
+        <span class="err-time-slot" id="err-time">Molimo odaberite slobodan termin</span>
+        <div class="slot-legend" id="slotLegend" style="display:none">
+          <span><span class="legend-dot available"></span>Slobodno</span>
+          <span><span class="legend-dot sel"></span>Odabrano</span>
+          <span><span class="legend-dot bkd"></span>Zauzeto</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Broj Gostiju</label>
+          <select id="guests">
+            <option value="">Odaberite broj</option>
+            <option>1 gost</option><option>2 gosta</option><option>3 gosta</option>
+            <option>4 gosta</option><option>5 gostiju</option><option>6 gostiju</option>
+          </select>
+          <span class="error-msg" id="err-guests">Molimo odaberite broj gostiju</span>
+        </div>
+        <div class="form-group">
+          <label>Povod (opciono)</label>
+          <select id="occasion">
+            <option value="">Bez povoda</option>
+            <option>Rođendan</option><option>Godišnjica</option>
+            <option>Poslovni Ručak</option><option>Prosidba</option><option>Slavlje</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-group-full">
+        <label>Posebni Zahtevi</label>
+        <textarea id="notes" placeholder="Dijetetska ograničenja, alergije, preferencije sedenja..."></textarea>
+      </div>
+      <button class="form-submit" id="submitBtn" onclick="submitReservation()">Pošaljite Zahtev za Rezervaciju</button>
+      <p class="form-note">Potvrdiћemo vašu rezervaciju mejlom u roku od 2 sata od prijema zahteva.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Velour</div>
+    <p class="footer-tagline">Fina Trpeza · Savremena Evropska Kuhinja · Ekskluzivna Vila</p>
+    <div class="footer-line"></div>
+    <div class="footer-info">
+      <p>Sreda — Nedelja &nbsp;·&nbsp; 18:30 — 22:00</p>
+      <p>rezervacije@velour-restoran.com &nbsp;·&nbsp; +381 60 000 0000</p>
+      <p style="margin-top:1.2rem;font-size:.65rem;opacity:.35">© 2024 Velour Fina Trpeza. Sva prava zadržana.</p>
+    </div>
+  </footer>
+
+  <!-- SUCCESS OVERLAY (restoran) -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">Zahtev Primljen</h2>
+    <p class="success-sub" id="successMsg">Hvala vam. Vaš zahtev je primljen i prosleđen našem timu.</p>
+    <button class="success-close" onclick="closeSuccess()">Povratak na Velour</button>
+  </div>
+
+  <!-- VILA INQUIRY MODAL -->
+  <div class="modal-overlay" id="vilaModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeVilaModal()">✕</button>
+      <p class="modal-tag">Upit za Iznajmljivanje</p>
+      <h2 class="modal-title" id="modalVilaName">Vila Zlatnik</h2>
+      <p class="modal-sub">Popunite obrazac ispod i naš tim će vas kontaktirati u roku od 24 sata sa dostupnošću i konačnom cenom.</p>
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Ime</label>
+          <input type="text" id="v-firstName" placeholder="Marko" autocomplete="given-name">
+          <span class="modal-err" id="v-err-firstName">Obavezno polje</span>
+        </div>
+        <div class="modal-form-group">
+          <label>Prezime</label>
+          <input type="text" id="v-lastName" placeholder="Petrović" autocomplete="family-name">
+          <span class="modal-err" id="v-err-lastName">Obavezno polje</span>
+        </div>
+      </div>
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Email</label>
+          <input type="email" id="v-email" placeholder="marko@primer.com" inputmode="email">
+          <span class="modal-err" id="v-err-email">Unesite ispravnu adresu</span>
+        </div>
+        <div class="modal-form-group">
+          <label>Telefon</label>
+          <input type="tel" id="v-phone" placeholder="+381 60 123 4567" inputmode="tel">
+          <span class="modal-err" id="v-err-phone">Obavezno polje</span>
+        </div>
+      </div>
+      <div class="modal-form-row">
+        <div class="modal-form-group">
+          <label>Datum dolaska</label>
+          <input type="text" id="v-checkin" placeholder="DD.MM.GGGG" maxlength="10" inputmode="numeric">
+          <span class="modal-err" id="v-err-checkin">Unesite datum</span>
+        </div>
+        <div class="modal-form-group">
+          <label>Datum odlaska</label>
+          <input type="text" id="v-checkout" placeholder="DD.MM.GGGG" maxlength="10" inputmode="numeric">
+          <span class="modal-err" id="v-err-checkout">Unesite datum</span>
+        </div>
+      </div>
+      <div class="modal-form-group">
+        <label>Broj gostiju</label>
+        <select id="v-guests">
+          <option value="">Odaberite</option>
+          <option>1 gost</option><option>2 gosta</option><option>3 gosta</option>
+          <option>4 gosta</option><option>5 gostiju</option><option>6 gostiju</option>
+          <option>7 gostiju</option><option>8 gostiju</option><option>9 gostiju</option><option>10 gostiju</option>
+        </select>
+        <span class="modal-err" id="v-err-guests">Odaberite broj gostiju</span>
+      </div>
+      <div class="modal-form-group">
+        <label>Napomena (opciono)</label>
+        <textarea id="v-notes" placeholder="Posebni zahtevi, povod, pitanja..."></textarea>
+      </div>
+      <button class="modal-submit" id="vilaSubmitBtn" onclick="submitVilaInquiry()">Pošaljite Upit</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS (vila) -->
+  <div class="success-overlay" id="vilaSuccessOverlay">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">Upit Primljen</h2>
+    <p class="success-sub" id="vilaSuccessMsg">Hvala! Vaš upit za vilu je uspešno primljen. Naš tim će vas kontaktirati u roku od 24 sata.</p>
+    <button class="success-close" onclick="document.getElementById('vilaSuccessOverlay').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'})">Povratak na Velour</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+  emailjs.init('wd6ROcrti-l9h56k5');
+
+  const ALL_TIMES=['18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00'];
+  const DAY_NAMES=['Nedelja','Ponedeljak','Utorak','Sreda','Četvrtak','Petak','Subota'];
+  const MONTH_NAMES=['januara','februara','marta','aprila','maja','juna','jula','avgusta','septembra','oktobra','novembra','decembra'];
+  let selectedTime='',validatedDateISO='',bookedSlots={};
+  let currentVilaName='';
+
+  function loadBookings(){try{const r=localStorage.getItem('velour-bookings');bookedSlots=r?JSON.parse(r):{}}catch(e){bookedSlots={}}}
+  function saveBooking(d,t){if(!bookedSlots[d])bookedSlots[d]=[];if(!bookedSlots[d].includes(t))bookedSlots[d].push(t);try{localStorage.setItem('velour-bookings',JSON.stringify(bookedSlots))}catch(e){}}
+
+  function getTodayISO(){const n=new Date();return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`}
+  function getMaxISO(){const n=new Date(),f=new Date(n.getFullYear(),n.getMonth()+3,n.getDate());return`${f.getFullYear()}-${String(f.getMonth()+1).padStart(2,'0')}-${String(f.getDate()).padStart(2,'0')}`}
+
+  function resetSlots(){selectedTime='';validatedDateISO='';document.getElementById('slotContainer').innerHTML='<p class="no-date-msg">Najpre unesite datum da biste videli slobodne termine</p>';document.getElementById('slotLegend').style.display='none'}
+  function showDateError(m){const e=document.getElementById('err-date');e.textContent=m;e.style.display='block';document.getElementById('dateHint').textContent='';resetSlots()}
+  function clearDateError(){const e=document.getElementById('err-date');e.style.display='none';e.textContent=''}
+
+  function autoFormatDate(input){let r=input.value.replace(/\D/g,''),f='';if(r.length>0)f+=r.substring(0,2);if(r.length>=3)f+='.'+r.substring(2,4);if(r.length>=5)f+='.'+r.substring(4,8);input.value=f;return f}
+
+  function onDateInput(e){const f=autoFormatDate(e.target);clearDateError();document.getElementById('dateHint').textContent='';if(f.length===10)validateAndShowDate(f);else resetSlots()}
+
+  function validateAndShowDate(fmt){
+    const p=fmt.split('.');if(p.length!==3){showDateError('Format datuma mora biti DD.MM.GGGG');return}
+    const day=parseInt(p[0],10),month=parseInt(p[1],10),year=parseInt(p[2],10);
+    if(isNaN(day)||isNaN(month)||isNaN(year)){showDateError('Unesite ispravan datum.');return}
+    if(month<1||month>12){showDateError('Mesec mora biti između 01 i 12.');return}
+    if(day<1||day>31){showDateError('Dan mora biti između 01 i 31.');return}
+    if(year<2024||year>2099){showDateError('Unesite ispravnu godinu.');return}
+    const d=new Date(year,month-1,day);
+    if(d.getFullYear()!==year||d.getMonth()!==month-1||d.getDate()!==day){showDateError('Ovaj datum ne postoji. Proverite unos.');return}
+    const iso=`${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    if(iso<getTodayISO()){showDateError('Ne možete rezervisati datum u prošlosti.');return}
+    if(iso>getMaxISO()){showDateError('Rezervacije su dostupne najviše 3 meseca unapred.');return}
+    const wd=d.getDay();
+    if(wd===1||wd===2){showDateError(`Restoran je zatvoren ${DAY_NAMES[wd]}om. Otvoreni smo sreda — nedelja.`);return}
+    clearDateError();validatedDateISO=iso;
+    document.getElementById('dateHint').textContent=`${DAY_NAMES[wd]}, ${day}. ${MONTH_NAMES[month-1]} ${year}.`;
+    renderSlots(iso);
+  }
+
+  function renderSlots(date){
+    const taken=bookedSlots[date]||[];selectedTime='';
+    const grid=document.createElement('div');grid.className='time-slot-grid';
+    ALL_TIMES.forEach(t=>{const btn=document.createElement('button');btn.className='time-slot';btn.textContent=t;if(taken.includes(t)){btn.classList.add('booked');btn.disabled=true;btn.title='Ovaj termin je zauzet'}else btn.onclick=()=>selectSlot(t);grid.appendChild(btn)});
+    document.getElementById('slotContainer').innerHTML='';document.getElementById('slotContainer').appendChild(grid);document.getElementById('slotLegend').style.display='flex';
+  }
+  function selectSlot(t){selectedTime=t;document.getElementById('err-time').style.display='none';document.querySelectorAll('.time-slot:not(.booked)').forEach(b=>b.classList.toggle('selected',b.textContent===t))}
+  function switchTab(tab){const tabs=['starters','mains','desserts','wine'];document.querySelectorAll('.menu-tab').forEach((t,i)=>t.classList.toggle('active',tabs[i]===tab));document.querySelectorAll('.menu-pane').forEach(p=>p.classList.toggle('active',p.id===tab))}
+
+  function validate(){
+    let ok=true;
+    [{id:'firstName',errId:'err-firstName',msg:'Molimo unesite vaše ime',check:v=>v.trim().length>0},
+    {id:'lastName',errId:'err-lastName',msg:'Molimo unesite vaše prezime',check:v=>v.trim().length>0},
+    {id:'email',errId:'err-email',msg:'Molimo unesite ispravnu email adresu',check:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'phone',errId:'err-phone',msg:'Molimo unesite vaš broj telefona',check:v=>v.trim().length>6},
+    {id:'guests',errId:'err-guests',msg:'Molimo odaberite broj gostiju',check:v=>v.length>0}
+    ].forEach(f=>{const el=document.getElementById(f.id),err=document.getElementById(f.errId),valid=f.check(el.value);err.textContent=f.msg;err.style.display=valid?'none':'block';if(!valid)ok=false});
+    const de=document.getElementById('err-date');if(!validatedDateISO){if(!de.textContent){de.textContent='Molimo unesite ispravan datum.';de.style.display='block'}ok=false}
+    const te=document.getElementById('err-time');if(!selectedTime){te.style.display='block';ok=false}else te.style.display='none';
+    return ok;
+  }
+
+  async function submitReservation(){
+    if(!validate())return;
+    const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Slanje...';
+    const fn=document.getElementById('firstName').value.trim(),ln=document.getElementById('lastName').value.trim(),em=document.getElementById('email').value.trim(),ph=document.getElementById('phone').value.trim(),gu=document.getElementById('guests').value,oc=document.getElementById('occasion').value||'Bez povoda',no=document.getElementById('notes').value.trim()||'Nema posebnih zahteva';
+    const d=new Date(validatedDateISO+'T00:00:00'),fd=`${DAY_NAMES[d.getDay()]}, ${d.getDate()}. ${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}.`;
+    try{
+      console.log("Saving reservation...");
+      const save=await fetch("/api/reservations",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({villaName:"Velour Fine Dining",firstName:fn,lastName:ln,email:em,phone:ph,reservationDate:fd,reservationTime:selectedTime,guests:gu,occasion:oc,notes:no})});
+      const result=await save.json();
+      console.log("Reservation save response:", result);
+      console.log("Save status:", save.status, "OK:", save.ok);
+      
+      if(!save.ok){
+        alert("Greška pri čuvanju rezervacije: " + (result.message || result.error));
+        btn.textContent='Pošaljite Zahtev za Rezervaciju';btn.disabled=false;
+        return;
+      }
+      
+      console.log("Sending emails...");
+      await emailjs.send('service_ogeijdt','template_2008t2d',{to_email:'restoranuzemunu@gmail.com',from_name:`${fn} ${ln}`,from_email:em,phone:ph,date:fd,time:selectedTime,guests:gu,occasion:oc,notes:no,reply_to:em,subject:`Zahtev za rezervaciju — ${fn} ${ln} — ${fd} u ${selectedTime}`,message:`NOVI ZAHTEV ZA REZERVACIJU — VELOUR FINA TRPEZA\n\nGost: ${fn} ${ln}\nEmail: ${em}\nTelefon: ${ph}\nDatum: ${fd}\nVreme: ${selectedTime}\nBroj gostiju: ${gu}\nPovod: ${oc}\nPosebni zahtevi: ${no}`});
+      await emailjs.send('service_ogeijdt','template_di5ok3d',{from_name:`${fn} ${ln}`,from_email:em,date:fd,time:selectedTime,guests:gu,occasion:oc,title:"✔ Vaš zahtev je uspešno primljen",text:"Hvala što ste nas kontaktirali. Javićemo vam se uskoro sa potvrdom i detaljima rezervacije."});
+      console.log("Emails sent successfully");
+      
+      saveBooking(validatedDateISO,selectedTime);
+      document.getElementById('successMsg').textContent=`Hvala, ${fn}. Vaš zahtev za sto za ${gu} dana ${fd} u ${selectedTime} je uspešno poslat. Potvrdiћemo mejlom u roku od 2 sata.`;
+      document.getElementById('successOverlay').classList.add('show');
+      ['firstName','lastName','email','phone','notes'].forEach(id=>document.getElementById(id).value='');
+      ['guests','occasion'].forEach(id=>document.getElementById(id).selectedIndex=0);
+      document.getElementById('date').value='';document.getElementById('dateHint').textContent='';clearDateError();validatedDateISO='';selectedTime='';
+      document.getElementById('slotContainer').innerHTML='<p class="no-date-msg">Najpre unesite datum da biste videli slobodne termine</p>';document.getElementById('slotLegend').style.display='none';
+      btn.textContent='Pošaljite Zahtev za Rezervaciju';btn.disabled=false;
+    }catch(err){console.error("submitReservation error:", err);btn.textContent='Pošaljite Zahtev za Rezervaciju';btn.disabled=false;alert('Greška pri slanju. Molimo pokušajte ponovo.');}
+  }
+
+  async function rejectReservation(id){
+
+    const res = await fetch(
+
+      `/api/reservations/${id}/reject`,
+
+      {
+
+        method:"PUT",
+
+        headers:{
+
+          Authorization:`Bearer ${token}`
+
+        }
+
+      }
+
+    );
+
+    
+
+    const data = await res.json();
+
+    console.log(data);
+
+    load();
+
+  }
+
+  function closeSuccess(){document.getElementById('successOverlay').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'})}
+
+  // ── VILA ──
+  function openVilaModal(name){
+    currentVilaName=name;
+    document.getElementById('modalVilaName').textContent=name;
+    document.getElementById('vilaModal').classList.add('show');
+    document.body.style.overflow='hidden';
+    ['v-firstName','v-lastName','v-email','v-phone','v-checkin','v-checkout','v-notes'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('v-guests').selectedIndex=0;
+    document.querySelectorAll('.modal-err').forEach(e=>{e.style.display='none'});
+  }
+  function closeVilaModal(){document.getElementById('vilaModal').classList.remove('show');document.body.style.overflow=''}
+
+  document.getElementById('v-checkin').addEventListener('input',function(){autoFormatDate(this)});
+  document.getElementById('v-checkout').addEventListener('input',function(){autoFormatDate(this)});
+
+  function validateVila(){
+    let ok=true;
+    [{id:'v-firstName',errId:'v-err-firstName',check:v=>v.trim().length>0},
+    {id:'v-lastName',errId:'v-err-lastName',check:v=>v.trim().length>0},
+    {id:'v-email',errId:'v-err-email',check:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'v-phone',errId:'v-err-phone',check:v=>v.trim().length>6},
+    {id:'v-checkin',errId:'v-err-checkin',check:v=>v.length===10},
+    {id:'v-checkout',errId:'v-err-checkout',check:v=>v.length===10},
+    {id:'v-guests',errId:'v-err-guests',check:v=>v.length>0}
+    ].forEach(f=>{const el=document.getElementById(f.id),err=document.getElementById(f.errId),valid=f.check(el.value);err.style.display=valid?'none':'block';if(!valid)ok=false});
+    return ok;
+  }
+
+  async function submitVilaInquiry(){
+
+    if(!validateVila()) return;
+
+    const btn=document.getElementById('vilaSubmitBtn');
+
+    btn.disabled=true;
+
+    btn.textContent='Slanje...';
+
+    const fn=document.getElementById('v-firstName').value.trim();
+
+    const ln=document.getElementById('v-lastName').value.trim();
+
+    const em=document.getElementById('v-email').value.trim();
+
+    const ph=document.getElementById('v-phone').value.trim();
+
+    const ci=document.getElementById('v-checkin').value;
+
+    const co=document.getElementById('v-checkout').value;
+
+    const gu=document.getElementById('v-guests').value;
+
+    const no=
+
+    document.getElementById('v-notes')
+
+    .value
+
+    .trim()
+
+    ||
+
+    'Nema napomena';
+
+    try{
+
+      // SACUVAJ U BAZU
+
+      const save = await fetch(
+
+        "/api/reservations",
+
+        {
+
+          method:"POST",
+
+          headers:{
+
+            "Content-Type":"application/json"
+
+          },
+
+          body:JSON.stringify({
+
+            villaName: currentVilaName,
+
+            firstName: fn,
+
+            lastName: ln,
+
+            email: em,
+
+            phone: ph,
+
+            reservationDate: ci,
+
+            reservationTime: co,
+
+            guests: gu,
+
+            occasion: currentVilaName,
+
+            notes: no
+
+          })
+
+        }
+
+      );
+
+
+      console.log("Status:", save.status);
+
+      console.log("OK:", save.ok);
+
+
+      const result = await save.json();
+
+      console.log("Response:", result);
+
+
+      // EMAILJS
+
+  // 1. moja inf vila
+  await emailjs.send(
+    'service_ogeijdt',
+    'template_2008t2d',
+    {
+      from_name: `${fn} ${ln}`,
+      from_email: em,
+
+      phone: ph,
+
+      date: ci,
+      time: co,
+
+      guests: gu,
+
+      occasion: currentVilaName,
+
+      notes: no,
+
+      reply_to: em
+    }
+  );
+  await emailjs.send(
+    'service_ogeijdt',
+    'template_di5ok3d',
+    {
+      from_name: `${fn} ${ln}`,
+      from_email: em,
+
+      date: ci,
+      time: co,
+
+      guests: gu,
+
+      occasion: currentVilaName || "Velour Fine Dining",
+
+      title: "✔ Vaša rezervacija je potvrđena",
+
+      text: "Sa zadovoljstvom vas obaveštavamo da je vaš upit uspešno primljen."
+    }
+  );
+  await emailjs.send(
+    'service_ogeijdt',
+    'template_di5ok3d',
+    {
+      from_name: `${fn} ${ln}`,
+      from_email: em,
+      date: ci,
+      time: co,
+      guests: gu,
+      occasion: currentVilaName,
+      title: "✔ Vaš zahtev je uspešno primljen",
+      text: "Hvala što ste nas kontaktirali. Javićemo vam se uskoro sa potvrdom i detaljima rezervacije."
+    }
+  );
+
+
+  // Obaveštenje tebi vila
+  await emailjs.send(
+    'service_ogeijdt',
+    'template_2008t2d',
+    {
+      to_email: 'restoranuzemunu@gmail.com',
+
+      from_name: `${fn} ${ln}`,
+      from_email: em,
+
+      phone: ph,
+
+      date: ci,
+      time: co,
+
+      guests: gu,
+
+      occasion: currentVilaName,
+
+      notes: no,
+
+      reply_to: em,
+
+      subject: `Upit za vilu: ${currentVilaName}`,
+
+      message:
+  `NOVI UPIT ZA VILU - VELOUR
+
+  Vila: ${currentVilaName}
+
+  Gost: ${fn} ${ln}
+
+  Email: ${em}
+
+  Telefon: ${ph}
+
+  Dolazak: ${ci}
+
+  Odlazak: ${co}
+
+  Broj gostiju: ${gu}
+
+  Napomena:
+
+  ${no}`
+    }
+  );
+
+
+
+      closeVilaModal();
+
+      document.body.style.overflow='';
+
+      document
+
+      .getElementById(
+
+        'vilaSuccessMsg'
+
+      )
+
+      .textContent=
+
+      `Hvala ${fn}!
+
+  Vaš upit za ${currentVilaName}
+
+  (${ci} - ${co})
+
+  je uspešno primljen.
+
+  Kontaktiraćemo vas uskoro.`;
+
+
+      document
+
+      .getElementById(
+
+        'vilaSuccessOverlay'
+
+      )
+
+      .classList.add(
+
+        'show'
+
+      );
+
+
+      btn.textContent='Pošaljite Upit';
+
+      btn.disabled=false;
+
+  }
+
+    catch(err){
+
+      console.error(err);
+
+      btn.textContent=
+
+      'Pošaljite Upit';
+
+      btn.disabled=false;
+
+      alert(
+
+      'Greška pri slanju.'
+
+      );
+
+    }
+
+  }
+
+  document.getElementById('date').addEventListener('input',onDateInput);
+  document.getElementById('vilaModal').addEventListener('click',function(e){if(e.target===this)closeVilaModal()});
+  loadBookings();
+  </script>
+  </body>
+  </html>
